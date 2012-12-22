@@ -1,5 +1,5 @@
 {
-    "name": "wfk/zend-symfony-console",
+    "name": "wfk/symfony-console-module",
     "type": "library",
     "description": "Symfony Console Component for Zend Framework MVC",
     "keywords": ["Symfony", "Mvc", "Console"],
