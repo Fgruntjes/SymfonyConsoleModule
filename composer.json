@@ -13,6 +13,6 @@
         "symfony/console": "2.*"
     },
     "autoload": {
-        "psr-0": { "SymfonyConsoleModule\\": "src\\SymfonyConsole" }
+        "psr-0": { "SymfonyConsoleModule\\": "src\\" }
     }
 }
