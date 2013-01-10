@@ -2,11 +2,37 @@
 namespace SymfonyConsoleModule\Service;
 
 use Zend\ServiceManager\FactoryInterface;
+use Symfony\Component\Console\Helper\HelperSet;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Symfony\Component\Console;
 
 class ConsoleApplicationFactory implements FactoryInterface
 {
+    /**
+     * @var \Zend\EventManager\EventManagerInterface
+     */
+    protected $events;
+
+    /**
+     * @param  ServiceLocatorInterface                  $sm
+     * @return \Zend\EventManager\EventManagerInterface
+     */
+    public function getEventManager(ServiceLocatorInterface $sm)
+    {
+        if (null === $this->events) {
+            /* @var $events \Zend\EventManager\EventManagerInterface */
+            $events = $sm->get('EventManager');
+            $events->addIdentifiers(array(
+                __CLASS__,
+                'console'
+            ));
+
+            $this->events = $events;
+        }
+
+        return $this->events;
+    }
+
     /**
      * Create service
      *
@@ -23,6 +49,7 @@ class ConsoleApplicationFactory implements FactoryInterface
         }
 
         $application = new Console\Application();
+        $application->setHelperSet(new HelperSet);
         if (isset($config['console']['name'])) {
             $application->setName($config['console']['name']);
         }
@@ -35,6 +62,9 @@ class ConsoleApplicationFactory implements FactoryInterface
         foreach($commands as $command) {
             $application->add($serviceLocator->get($command));
         }
+
+        $this->getEventManager($serviceLocator)->trigger('load.post', $application, array('ServiceManager' => $serviceLocator));
+
         return $application;
     }
 }
