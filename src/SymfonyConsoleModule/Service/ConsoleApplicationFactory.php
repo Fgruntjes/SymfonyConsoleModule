@@ -49,7 +49,6 @@ class ConsoleApplicationFactory implements FactoryInterface
         }
 
         $application = new Console\Application();
-        $application->setHelperSet(new HelperSet);
         if (isset($config['console']['name'])) {
             $application->setName($config['console']['name']);
         }
