@@ -16,10 +16,7 @@ class Module implements
 {
 
     /**
-     * Expected to return \Zend\ServiceManager\Config object or array to seed
-     * such an object.
-     *
-     * @return array|\Zend\ServiceManager\Config
+     * {@inheritDoc}
      */
     public function getControllerConfig()
     {
@@ -31,24 +28,20 @@ class Module implements
     }
 
     /**
-     * Expected to return \Zend\ServiceManager\Config object or array to
-     * seed such an object.
-     *
-     * @return array|\Zend\ServiceManager\Config
+     * {@inheritDoc}
      */
     public function getServiceConfig()
     {
         return array(
             'factories' => array(
                 'SymfonyConsoleModule\Console\Application' => 'SymfonyConsoleModule\Service\ConsoleApplicationFactory',
+                'SymfonyConsoleModule\Command\Zf2' => 'SymfonyConsoleModule\Service\Zf2CommandFactory',
             ),
         );
     }
 
     /**
-     * Return an array for passing to Zend\Loader\AutoloaderFactory.
-     *
-     * @return array
+     * {@inheritDoc}
      */
     public function getAutoloaderConfig()
     {
@@ -62,9 +55,7 @@ class Module implements
     }
 
     /**
-     * Returns configuration to merge with application configuration
-     *
-     * @return array|\Traversable
+     * {@inheritDoc}
      */
     public function getConfig()
     {
@@ -77,12 +68,15 @@ class Module implements
                             'options' => array(
                                 'defaults' => array(
                                     'controller' => 'SymfonyConsoleModule\Controller\Console',
-                                    'action'     => 'all'
-                                )
-                            )
+                                    'action'     => 'all',
+                                ),
+                            ),
                         ),
-                    )
-                )
+                    ),
+                ),
+                'commands' => array(
+                    'SymfonyConsoleModule\Command\Zf2'
+                ),
             ),
         );
     }
