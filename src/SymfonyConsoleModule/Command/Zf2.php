@@ -7,12 +7,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Zend\Console\Request;
 use Zend\Mvc\Application;
-use Zend\Mvc\Router\Console\SimpleRouteStack;
+use Zend\Mvc\Router\RouteStackInterface;
 
 class Zf2 extends Command
 {
     /**
-     * @var SimpleRouteStack
+     * @var RouteStackInterface
      */
     protected $router;
 
@@ -45,7 +45,7 @@ class Zf2 extends Command
     }
 
     /**
-     * @return SimpleRouteStack
+     * @return RouteStackInterface
      */
     public function getRouter()
     {
@@ -53,10 +53,10 @@ class Zf2 extends Command
     }
 
     /**
-     * @param SimpleRouteStack $router
+     * @param RouteStackInterface $router
      * @return Zf2
      */
-    public function setRouter(SimpleRouteStack $router)
+    public function setRouter(RouteStackInterface $router)
     {
         $this->router = $router;
         return $this;
