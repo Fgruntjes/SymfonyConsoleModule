@@ -24,7 +24,8 @@ class ConsoleApplicationFactory implements FactoryInterface
             $events = $sm->get('EventManager');
             $events->addIdentifiers(array(
                 __CLASS__,
-                'console'
+                'console',
+                'doctrine'
             ));
 
             $this->events = $events;
@@ -63,6 +64,7 @@ class ConsoleApplicationFactory implements FactoryInterface
         }
 
         $this->getEventManager($serviceLocator)->trigger('load.post', $application, array('ServiceManager' => $serviceLocator));
+        $this->getEventManager($serviceLocator)->trigger('loadCli.post', $application, array('ServiceManager' => $serviceLocator));
 
         return $application;
     }
