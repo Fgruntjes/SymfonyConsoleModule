@@ -17,7 +17,7 @@
     "require": {
         "php": ">=5.3",
         "zendframework/zend-mvc": "2.*",
-        "symfony/console": "2.8.*|3.*"
+        "symfony/console": "3.3.*"
     },
     "autoload": {
         "psr-0": { "SymfonyConsoleModule\\": "src\\" }
