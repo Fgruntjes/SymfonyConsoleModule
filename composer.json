@@ -1,11 +1,18 @@
 {
-    "name": "wfk/symfony-console-module",
+    "name": "tmihalicka/symfony-console-module",
     "type": "library",
     "description": "Symfony Console Component for Zend Framework MVC",
     "keywords": ["Symfony", "Mvc", "Console"],
     "version": "0.1.3",
     "authors": [
-        {"name": "Freek Gruntjes", "email": "freek@gruntjes.net"}
+        {
+            "name": "Freek Gruntjes",
+            "email": "freek@gruntjes.net"
+        },
+        {
+            "name": "Tomas Mihalicka",
+            "email": "tomas@mihalicka.com"
+        }
     ],
     "require": {
         "php": ">=5.3",
